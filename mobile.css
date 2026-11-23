@@ -1,0 +1,239 @@
+/* ==========================================================================
+   Más allá de nosotros · Celular (diseño propio, minimalista)
+   Se carga solo hasta 899 px; el computador no se ve afectado.
+
+   Reglas:
+   1. Una sola columna (salvo la tienda).
+   2. Márgenes de 20 px y todo alineado a ellos.
+   3. Tres tamaños de texto: títulos 34 px · texto 16 px · etiquetas 12 px.
+   4. El mismo espacio entre secciones (96 px).
+   5. Pocas cajas: el texto va libre; solo lo que se toca lleva tarjeta.
+   6. Imágenes a todo el ancho, horizontales, esquinas de 24 px.
+   7. Botones a todo el ancho, 52 px de alto.
+   ========================================================================== */
+:root{--g:20px;--m-gap:96px;--m-r:24px}
+
+/* ---------- Tipografía (tres tamaños) ---------- */
+body{font-size:16px}
+.eyebrow{font-size:12px;letter-spacing:.14em}
+h1,.l1 h1,.page-hero h1,.vb-copy h1,.hero-simple h1{font-size:36px;line-height:1.08;letter-spacing:-.045em}
+h2,.chapter h2,html.cause-1 .chapter h2,.read-head h2,.mvv-head h2,.closing h2,.l2 h2,.v-head h2{font-size:34px;line-height:1.1;letter-spacing:-.04em}
+p,.tile p,.chapter>p,.page-hero p,.vb-copy p,.hero-simple>p,.intro-end p,.read-col p,.read-head p,.v-desc,.panel p,.faq-list details>p,.quote-block .support,.closing .note{font-size:16px;line-height:1.6}
+.tile .lead,.about .lead,.read-head p{font-size:20px;line-height:1.4;letter-spacing:-.015em;color:var(--ink)}
+.chapter>p{max-width:none;margin-top:12px}
+
+/* Sin máscaras de palabras en celular (evitan filos de 1 px) */
+.w,.l1 .w,.chapter .w,.rise .w{overflow:visible;padding:0;margin:0}
+
+/* ---------- Ritmo ---------- */
+.block,.chapter-wrap{padding-top:var(--m-gap)}
+.about{padding:var(--m-gap) 0 24px}
+.chapter{margin-bottom:32px;text-align:center}
+.closing,.simple .closing{padding:var(--m-gap) 0 64px;text-align:center}
+footer{padding:48px var(--g) 40px}
+footer nav{gap:6px 16px}
+
+/* ---------- Botones ---------- */
+main .actions{flex-direction:column;align-items:stretch;gap:10px;width:100%;max-width:none;margin-inline:0}
+main .actions .btn,.btn{width:100%;min-height:52px;font-size:16px}
+
+/* ---------- Imágenes ---------- */
+.ph-media,.video-media,.photo,.slides,.tile-photo,.cause-media,.product-img{border-radius:var(--m-r)}
+
+/* ---------- Fondo de color: grande y suave, sin escalar ---------- */
+.mesh i{width:150vw!important;height:150vw!important}
+.mesh i:nth-child(1){left:-70vw;top:5vh}
+.mesh i:nth-child(2){right:-75vw;top:40vh}
+.mesh i:nth-child(3){right:-50vw;top:-40vh}
+.mesh i:nth-child(4){left:-75vw;bottom:-40vh}
+.mesh i:nth-child(5){right:-60vw;bottom:-45vh}
+html.light .mesh i,html.light.simple .mesh i{--k:0;animation:m-drift 26s ease-in-out infinite alternate}
+@keyframes m-drift{0%{translate:0 0}50%{translate:4vw -5vh}100%{translate:-3vw 4vh}}
+
+/* ==========================================================================
+   Menú (se conserva el diseño aprobado)
+   ========================================================================== */
+.tabs .tab:not([aria-current]){display:none}
+html.simple .brand-name{display:none}
+html.simple .brand-pill{padding:5px}
+.back-pill{width:46px;height:46px;padding:0;justify-content:center;border-radius:50%}
+.back-pill span{display:none}
+.topbar.compact .back-pill{width:42px;height:42px}
+.chev{display:inline-block;width:8px;height:8px;margin-left:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .5s var(--jelly)}
+.menu-open .chev{transform:translateY(2px) rotate(-135deg)}
+.menu-scrim{display:block;position:fixed;inset:0;z-index:45;background:rgba(255,255,255,.35);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);opacity:0;pointer-events:none;transition:opacity .35s ease}
+.menu-open .menu-scrim{opacity:1;pointer-events:auto}
+.menu-list{display:flex;flex-direction:column;align-items:flex-end;gap:10px;position:fixed;top:76px;right:var(--g);z-index:55;pointer-events:none}
+.menu-open .menu-list{pointer-events:auto}
+.menu-pill{padding:14px 22px;border-radius:999px;font-size:17px;font-weight:600;color:var(--ink);background:rgba(255,255,255,.88);box-shadow:0 12px 30px rgba(30,30,60,.14);opacity:0;transform:translateY(-14px) scale(.92);transition:opacity .25s ease,transform .55s var(--jelly)}
+.menu-open .menu-pill{opacity:1;transform:none;transition-delay:calc(var(--i) * 55ms)}
+.menu-pill[aria-current="page"]{color:#fff;background:#1d1d1f}
+
+/* ==========================================================================
+   Portadas: una pantalla, imagen arriba y texto centrado debajo
+   ========================================================================== */
+.page-hero{display:flex;flex-direction:column;gap:28px;min-height:0;padding:92px 0 0;text-align:center}
+.page-hero .ph-media{order:-1;width:100%;aspect-ratio:4 / 3}
+.page-hero .ph-copy{display:flex;flex-direction:column;align-items:center}
+.page-hero h1{margin-top:12px}
+.page-hero p{margin-top:14px;max-width:none}
+.page-hero .actions{margin-top:24px}
+html.cause-1 .page-hero{display:flex}
+.video-banner{min-height:0;gap:28px;padding:92px 0 0}
+.video-banner .video-media,.video-banner .vb-copy{width:100%}
+.video-banner .video-media{height:auto}
+.vb-copy{grid-template-columns:1fr;gap:0;text-align:center;justify-items:center}
+.vb-copy p{margin-top:14px}
+.vb-copy .actions{margin-top:24px}
+.video-toggle{width:44px;height:44px;right:12px;bottom:12px}
+.hero-simple,.hero-simple.compact{min-height:100svh;padding:110px var(--g) 64px;gap:18px}
+
+/* ==========================================================================
+   Nosotros
+   ========================================================================== */
+/* Apertura (escena) */
+.js .intro{height:300vh}
+.js .photo{width:calc(100vw - 2 * var(--g));aspect-ratio:4 / 3;border-radius:calc(28px - var(--a) * 4px);transform:translateY(calc(-7vh + (1 - var(--a)) * 34vh)) scale(calc(.5 + var(--a) * .5))}
+.js .intro-end{width:calc(100vw - 2 * var(--g));bottom:auto;top:calc(50% - 7vh + (100vw - 2 * var(--g)) * .375 + 22px)}
+.js .intro-end p{margin-bottom:16px}
+/* Manifiesto */
+.js .manifesto{height:165vh}
+.js .manifesto p{font-size:38px}
+/* Sobre nosotros: lectura, sin cajas */
+.about .bento{display:block}
+.about .bento>*{margin-bottom:24px}
+.about .tile,.about .tile-rail>.tile{padding:0;border-radius:0;background:none!important;box-shadow:none!important;scale:none}
+.about .tile-rail{display:block}
+.about .tile-photo{position:relative;min-height:0;aspect-ratio:4 / 3;border-radius:var(--m-r);overflow:hidden;box-shadow:0 20px 50px rgba(30,30,60,.14)!important}
+.about .tile p b{color:var(--ink);font-weight:600}
+.about .chips{margin-top:12px;gap:6px}
+.about .chips span{padding:6px 12px;font-size:13px;background:rgba(255,255,255,.7);box-shadow:none}
+.about .bento>.tile:last-child .lead{font-size:24px;line-height:1.3}
+.about .bento>.tile:last-child .btn{margin-top:20px}
+/* Propósito, misión y visión (escena horizontal) */
+.js .mvv{height:260vh}
+.js .mvv .stick{justify-content:center;gap:28px}
+.mvv-head{flex-direction:column;align-items:flex-start;gap:8px;padding-inline:var(--g)}
+.mvv-head.wrap{width:auto;margin:0}
+.js .track{gap:var(--g);padding-inline:var(--g)}
+.js .panel{flex-basis:calc(100vw - 2 * var(--g));min-height:0;justify-content:flex-start;gap:20px;padding:28px 24px 30px;border-radius:var(--m-r)}
+.js .panel h3{font-size:34px;margin-top:8px}
+/* Nuestra esencia y pasos (escena) */
+.js .values{height:340vh}
+.v-head{top:10vh;padding-inline:var(--g)}
+.v-head h2{font-size:24px;line-height:1.2}
+.v-item{top:52%}
+.v-word{font-size:56px}
+.v-desc{margin-top:16px}
+.v-progress{bottom:6vh}
+.app-icon{width:96px;height:96px;border-radius:24px;margin-bottom:28px}
+
+/* ==========================================================================
+   Nuestro trabajo
+   ========================================================================== */
+/* Compromiso: dos párrafos, sin cajas */
+.bento[data-group]{display:block}
+.bento[data-group]>.tile{padding:0;margin:0 0 18px;border-radius:0;background:none!important;box-shadow:none!important;scale:none}
+.bento[data-group]>.tile .lead{font-size:22px;line-height:1.35;font-weight:600}
+.bento[data-group]>.tile p b{color:var(--ink);font-weight:600}
+/* Causas: tarjetas grandes una debajo de otra */
+.causes{display:flex;flex-direction:column;gap:16px;overflow:visible;margin:0;padding:0}
+.causes>.tile{width:100%}
+.cause-card .cause-media,.cause-card:nth-child(even) .cause-media{aspect-ratio:16 / 10;border-radius:0}
+.cause-card .cause-body{padding:20px 20px 22px}
+.cause-card .cause-body h3{font-size:22px}
+.cause-card .cause-body p{flex:none;margin:6px 0 18px}
+/* Personas: lista con foto pequeña al lado */
+.people{display:flex!important;flex-direction:column;gap:12px}
+.people>.person{flex-direction:row;align-items:center;gap:16px;padding:12px;border-radius:22px}
+.people .person-photo{flex:0 0 84px;width:84px;height:84px;aspect-ratio:1;border-radius:16px}
+.people .person-body{padding:0}
+.people .person-body h3{font-size:17px}
+.people .person-body .role{margin:4px 0 0;font-size:13px;font-weight:500;opacity:.7}
+.people .person-body>p:not(.role){display:none}
+/* Aliados: logos en cuadrícula limpia */
+.allies{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile.ally{padding:20px 12px;border-radius:22px}
+.ally-logo{height:56px;margin-bottom:10px}
+.ally h3{font-size:14px}
+.ally p{display:none}
+
+/* ==========================================================================
+   Con propósito
+   ========================================================================== */
+.quote-block blockquote{font-size:32px;line-height:1.15}
+
+/* ==========================================================================
+   Tienda: dos columnas compactas
+   ========================================================================== */
+.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product{padding:8px 8px 12px;border-radius:22px}
+.product-img{border-radius:16px}
+.product-body{padding:12px 4px 0}
+.product-body h3{font-size:15px;line-height:1.25}
+.price{gap:4px 8px;margin:8px 0 12px}
+.price strong{font-size:17px}
+.price del{font-size:13px}
+.price .chip{font-size:10px;padding:3px 8px}
+.price .ask{font-size:13px}
+.product .btn{min-height:42px;font-size:13px;padding:0 10px}
+
+/* ==========================================================================
+   Contacto
+   ========================================================================== */
+.faq-list{gap:10px}
+.faq-list details{border-radius:22px}
+.faq-list summary{font-size:16px;padding:18px 20px;gap:14px}
+.faq-list summary i{width:30px;height:30px}
+.faq-list details>p{padding:0 20px 20px}
+
+/* ==========================================================================
+   Causas
+   ========================================================================== */
+.read-split{display:flex;flex-direction:column;gap:28px}
+.read-head{text-align:left}
+.read-split .slider{order:1}
+.read-split .read-col{order:2}
+.read-split .slides{flex:none;width:100%;aspect-ratio:4 / 3;min-height:0}
+.slider-ctrl{margin-top:14px}
+.arrow{width:44px;height:44px}
+.read-col .commit-line p{font-size:20px;line-height:1.4}
+
+/* ==========================================================================
+   Movimiento reducido (sin escenas): todo en orden
+   ========================================================================== */
+.static .intro .stick{gap:28px;padding:110px var(--g) 64px}
+.static .photo{max-width:none;width:100%;aspect-ratio:4 / 3}
+.static .mvv .track{padding-inline:var(--g)}
+
+/* ---------- Modo oscuro ---------- */
+@media (prefers-color-scheme:dark){
+ .menu-scrim{background:rgba(0,0,0,.45)}
+ .menu-pill{color:#f5f5f7;background:rgba(40,40,44,.9);box-shadow:0 12px 30px rgba(0,0,0,.5)}
+ .menu-pill[aria-current="page"]{color:#000;background:#f5f5f7}
+ .about .chips span{background:rgba(255,255,255,.12)}
+}
+/* Sobre nosotros: aire entre párrafos */
+.about .tile-rail>.tile{margin-bottom:22px}
+.about .tile-rail>.tile:last-child{margin-bottom:0}
+
+/* ==========================================================================
+   Portadas más ligeras: imagen más baja, sin párrafo largo y botones en píldora
+   ========================================================================== */
+.page-hero .ph-media,.page-hero .ph-media.contain{aspect-ratio:3 / 2}
+.page-hero{gap:24px}
+main:not(#cause) .page-hero .ph-copy>p,.vb-copy p{display:none}
+.page-hero .actions,.vb-copy .actions,.hero-simple .actions,.js .intro-end .actions,.static .intro-end .actions{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:20px}
+.page-hero .actions .btn,.vb-copy .actions .btn,.hero-simple .actions .btn,.intro-end .actions .btn{width:auto;min-height:44px;padding:0 20px;font-size:15px}
+.hero-simple>p{max-width:34ch}
+.page-hero .actions,.vb-copy .actions,.hero-simple .actions,.js .intro-end .actions,.static .intro-end .actions{flex-wrap:nowrap}
+.page-hero .actions .btn,.vb-copy .actions .btn,.hero-simple .actions .btn,.intro-end .actions .btn{padding:0 15px;font-size:14px;white-space:nowrap}
+.hero-simple .actions{flex-wrap:wrap}
+/* Menú fluido en celular: mismos tamaños, solo escala */
+.topbar.compact .back-pill{width:46px;height:46px}
+html.simple .topbar.compact .brand-pill{padding:5px;clip-path:inset(-20px -20px -20px -20px round 999px)}
+/* Quién lo lidera */
+.leader{display:flex;flex-direction:column;align-items:stretch;gap:24px;margin-bottom:56px}
+.leader-photo{aspect-ratio:4 / 5;border-radius:var(--m-r)}
+.leader-copy h3{font-size:34px;margin-top:10px}
+.leader-copy p{font-size:16px;margin-top:12px}
